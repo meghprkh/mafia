@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<widget xmlns   = "http://www.w3.org/ns/widgets"
+    xmlns:gap   = "http://phonegap.com/ns/1.0"
+    id          = "org.meghprkh.mafia"
+    versionCode = "10"
+    version     = "1.0.0" >
+
+<!-- versionCode is optional and Android only -->
+
+  <name>Mafia</name>
+
+  <description>
+      Randomly generate Mafia roles.
+  </description>
+
+  <author href="https://meghprkh.github.io" email="meghprkh@gmail.com">
+      Megh Parikh
+  </author>
+
+</widget>
