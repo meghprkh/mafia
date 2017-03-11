@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+  <title>Mafia Role Generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+  <meta content="utf-8" http-equiv="encoding">
+  <style>
+  .hidden {
+    display: none;
+  }
+  </style>
+</head>
+<body>
+  <div id='panel1'>
+    <ul id='roleTypes'>
+      <li><label><span>Mafia</span>: <input type='number'/></label></li>
+      <li><label><span>Villagers</span>: <input type='number'/></label></li>
+      <li><label><span>Detective</span>: <input type='number'/></label></li>
+      <li><label><span>Vigilante</span>: <input type='number'/></label></li>
+      <li><label><span>Healer</span>: <input type='number'/></label></li>
+    </ul>
+    <button onClick='assignRoles()'>Submit</button>
+  </div>
+  <div id='panel2' class='hidden'>
+    <ul id='players'>
+    </ul>
+    <button onClick='newGame()'>New Game</button>
+  </div>
+  <script>
+  function shuffle(array) {
+    let counter = array.length;
+
+    // While there are elements in the array
+    while (counter > 0) {
+      // Pick a random index
+      let index = Math.floor(Math.random() * counter);
+
+      // Decrease counter by 1
+      counter--;
+
+      // And swap the last element with it
+      let temp = array[counter];
+      array[counter] = array[index];
+      array[index] = temp;
+    }
+
+    return array;
+  }
+
+  function assignRoles() {
+    var players = []
+    for (roleLi of document.getElementById('roleTypes').children) {
+      var role = roleLi.children[0].children[0].innerText
+      var roleN = roleLi.children[0].children[1].value || 0
+      for (var i = 0; i < roleN; i++) players.push(role)
+    }
+    document.getElementById('players').innerHTML = shuffle(players).map(function (role) {
+      return '<li>' + role + '</li>'
+    }).join('')
+    document.getElementById('panel1').className = 'hidden'
+    document.getElementById('panel2').className = ''
+  }
+
+  function newGame() {
+    if (!confirm('New Game?')) return;
+    document.getElementById('panel1').className = ''
+    document.getElementById('panel2').className = 'hidden'
+  }
+  </script>
+</body>
+</html>
